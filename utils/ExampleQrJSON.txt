@@ -1,0 +1,9 @@
+{"details": [
+        { "name0": "French Fries", "price0": 10, "quantity0": 1},
+        { "name1": "Steak Fries", "price1": 15, "quantity1": 2},
+        { "name2": "Pork Curls", "price2": 15, "quantity2": 1},
+        { "name3": "Fries", "price3": 25, "quantity3": 3},
+        { "name4": null, "price4": null, "quantity4": null}
+      ],
+      "location": "Roadster Diner",
+      "time": "12:49 am"}
