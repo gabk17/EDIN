@@ -13,6 +13,8 @@ function scoreReducer(state = 0, action) {
     case 'ADD':
       let reward = action.payload
       return add(state, reward)
+    case 'SAVE':
+      return action.payload
     case 'RESET':
       return reset();
     default:

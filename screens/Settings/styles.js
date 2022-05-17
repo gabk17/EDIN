@@ -5,12 +5,17 @@ const height = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   androidHeader: {
+    alignItems: 'center',
     flexDirection: 'row',
     marginRight: 0,
     paddingTop: StatusBar.currentHeight + 40,
+  },
+  edinLogo: {
+    width: width,
+    alignItems: 'center'
   },
   iosHeader: {
     flexDirection: 'row',

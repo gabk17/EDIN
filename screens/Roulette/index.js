@@ -110,8 +110,7 @@ const Roulette = ({ navigation }) => {
   const [spinned, setSpinned] = useState(false)
 
   const goHome = () => {
-    // navigation.navigate('Home', { screen: 'Home' })
-    setSpinned(!spinned)
+    navigation.navigate('Home', { screen: 'Home' })
   }
 
   return (

@@ -4,4 +4,11 @@ export const add = (reward) => {
     payload: reward,
   }
 }
+
+export const saveScore = (score) => {
+  return {
+    type: 'SAVE',
+    payload: score,
+  }
+}
 export const reset = () => ({ type: 'RESET' });

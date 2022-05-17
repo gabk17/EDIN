@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View, Text, ScrollView, ActivityIndicator, Image, TouchableOpacity, Button } from 'react-native';
-import { collection, getDocs, query, where } from 'firebase/firestore'
+import { collection, getDocs, query, where, orderBy, limit } from 'firebase/firestore'
 import { useSelector } from 'react-redux';
 import TimeAgo from 'react-native-timeago';
 import Modal from "react-native-modal";
+import { SwipeablePanel } from 'rn-swipeable-panel';
 
 import styles from './styles';
 import { db } from '../../firebase'
@@ -19,19 +20,46 @@ const Orders = () => {
   let [, userID] = info
 
   useEffect(async () => {
-    const q = query(collection(db, "recent"), where("userID", "==", userID));
-    const fetchOrders = await getDocs(q);
-    setLoading(false)
+    try {
+      const userRef = collection(db, "recent");
+      const whereRef = where("userID", "==", userID)
+      const orderRef = orderBy("time", "desc")
+      const q = query(userRef, whereRef, orderRef, limit(10));
 
-    fetchOrders.forEach((doc) => {
-      setOrder(fetchOrders.docs.map((doc) => ({ ...doc.data() })))
-    });
+      const fetchOrders = await getDocs(q);
+      setLoading(false)
+
+      fetchOrders.forEach((doc) => {
+        setOrder(fetchOrders.docs.map((doc) => ({ ...doc.data() })))
+      });
+    } catch (e) {
+      console.log(e)
+    }
+
 
   }, [])
 
   const handleModal = (id) => {
     setIsModalVisible(!isModalVisible)
     setOrderDetails(order[id])
+  };
+
+  const [panelProps, setPanelProps] = useState({
+    fullWidth: true,
+    openLarge: true,
+    showCloseButton: true,
+    onClose: () => closePanel(),
+    onPressCloseButton: () => closePanel(),
+    // ...or any prop you want
+  });
+  const [isPanelActive, setIsPanelActive] = useState(false);
+
+  const openPanel = () => {
+    setIsPanelActive(true);
+  };
+
+  const closePanel = () => {
+    setIsPanelActive(false);
   };
 
   return (
@@ -64,14 +92,7 @@ const Orders = () => {
 
                 </View>
 
-                <Modal isVisible={isModalVisible}
-                  animationInTiming={500}
-                  animationOutTiming={500}
-                  backdropTransitionInTiming={100}
-                  backdropTransitionOutTiming={100}
-                  backdropColor="rgba(255,255,255,0)"
-                  onBackdropPress={() => setIsModalVisible(!isModalVisible)}
-                >
+                <SwipeablePanel {...panelProps} isActive={isPanelActive}>
                   <View style={styles.modalContainer}>
                     <View style={styles.modalContent}>
                       {orderDetails.details.map((detail, idx) => {
@@ -101,7 +122,18 @@ const Orders = () => {
                       </View>
                     </View>
                   </View>
-                </Modal>
+                </SwipeablePanel>
+
+                {/* <Modal isVisible={isModalVisible}
+                  animationInTiming={0}
+                  animationOutTiming={0}
+                  backdropTransitionInTiming={0}
+                  backdropTransitionOutTiming={0}
+                  backdropColor="rgba(255,255,255,0)"
+                  onBackdropPress={() => setIsModalVisible(!isModalVisible)}
+                >
+                  
+                </Modal> */}
               </View>
             )
           }) :

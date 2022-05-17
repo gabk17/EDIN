@@ -39,24 +39,26 @@ const Settings = ({ navigation }) => {
       },
       trigger: {
         seconds: 2,
-        // repeats: true
+        repeats: true,
       }
     })
+
+    isEnabled && Notifications.cancelAllScheduledNotificationsAsync()
   };
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   if (sidebarIconClicked) {
+  //     sideBarAnimation.current.play(0, 20)
+  //   }
+  //   else {
+  //     sideBarAnimation.current.play(20, 0)
+  //   }
 
-    if (sidebarIconClicked) {
-      sideBarAnimation.current.play(0, 20)
-    }
-    else {
-      sideBarAnimation.current.play(20, 0)
-    }
-  }, [sidebarIconClicked])
+  // }, [sidebarIconClicked])
 
-  const openSideBar = () => {
-    setSidebarIconClicked(!sidebarIconClicked)
-  }
+  // const openSideBar = () => {
+  //   setSidebarIconClicked(!sidebarIconClicked)
+  // }
 
   const profileSVG = (
     <Svg
@@ -131,13 +133,13 @@ const Settings = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={Platform.OS === "android" ? styles.androidHeader : styles.iosHeader}>
-        <TouchableOpacity onPress={openSideBar}>
+        {/* <TouchableOpacity onPress={openSideBar}>
           <LottieView
             ref={sideBarAnimation}
             style={styles.sidebarIcon}
             source={require('../../assets/lottie/sidebarAnimation.json')} autoPlay={false}
             loop={false} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <View style={styles.edinLogo}>
           <EdinLogo />

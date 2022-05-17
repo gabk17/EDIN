@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, TextInput, ToastAndroid } from 'react-native';
 import { useSelector } from 'react-redux';
-import { doc, updateDoc, query, getDocs, collection, where, addDoc } from 'firebase/firestore'
+import { doc, updateDoc, query, getDocs, collection, where, onSnapshot } from 'firebase/firestore'
 import Svg, { Path } from "react-native-svg"
 
 import { db } from '../../firebase'
@@ -50,12 +50,14 @@ const EditProfile = ({ navigation }) => {
 
   useEffect(async () => {
     const q = query(collection(db, "users"), where("id", "==", userID));
-    const docs = await getDocs(q);
-    docs.forEach((doc) => {
-      setUserDocID(doc.id)
-      setFirebaseFirstName(doc.data().firstName)
-      setFirebaseLastName(doc.data().lastName)
-    })
+
+    onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        setUserDocID(doc.id)
+        setFirebaseFirstName(doc.data().firstName)
+        setFirebaseLastName(doc.data().lastName)
+      });
+    });
   }, [])
 
   const handleEdit = async () => {

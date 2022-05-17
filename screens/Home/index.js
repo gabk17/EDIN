@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, TouchableOpacity, Text, ScrollView } from 'react-native';
+import { View, TouchableOpacity, Text, ScrollView, ActivityIndicator } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useSelector } from 'react-redux';
-import { doc, updateDoc, query, getDocs, collection, where, addDoc } from 'firebase/firestore'
+import { useSelector, useDispatch } from 'react-redux';
+import { doc, updateDoc, query, getDocs, collection, where, onSnapshot } from 'firebase/firestore'
 
 import { db } from '../../firebase'
+import { saveScore } from '../../redux/actions/scoreActions'
 import styles from './styles';
 import EdinLogo from "../../components/EdinLogo";
 import ForwardButton from '../../components/ForwardButton'
@@ -14,10 +15,13 @@ import SuggestionBox from '../../components/SuggestionBox';
 
 const Home = ({ navigation }) => {
 
+  const dispatch = useDispatch();
+
   const [selectedOption, setSelectedOption] = useState('Most Popular')
   const [firebaseUserScore, setFirebaseUserScore] = useState('')
   const [firebaseFirstName, setFirebaseFirstName] = useState('')
   const [firebaseLastName, setFirebaseLastName] = useState('')
+  const [loading, setLoading] = useState(true)
 
   const info = useSelector(state => state.userInfo)
   // console.log(info)
@@ -25,12 +29,16 @@ const Home = ({ navigation }) => {
 
   useEffect(async () => {
     const q = query(collection(db, "users"), where("id", "==", userID));
-    const docs = await getDocs(q);
-    docs.forEach((doc) => {
-      setFirebaseUserScore(doc.data().score)
-      setFirebaseFirstName(doc.data().firstName)
-      setFirebaseLastName(doc.data().lastName)
-    })
+    onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        setLoading(false)
+        setFirebaseUserScore(doc.data().score)
+        setFirebaseFirstName(doc.data().firstName)
+        setFirebaseLastName(doc.data().lastName)
+        dispatch(saveScore(doc.data().score))
+      });
+    });
+
   }, [])
 
   const DATA = [
@@ -42,7 +50,6 @@ const Home = ({ navigation }) => {
   ]
 
   const suggestionTemplate = (item) => {
-
     return (
       <TouchableOpacity key={item.id}
         onPress={() => setSelectedOption(item.title)}>
@@ -67,28 +74,32 @@ const Home = ({ navigation }) => {
           </View>
 
         </View>
-        <View style={styles.helloMsgContainer}>
-          <Text style={styles.helloText}>Hello, {''}</Text>
-          <Text style={styles.usernameText}>{firebaseFirstName}!</Text>
-        </View>
 
-        <View style={styles.scoreContainer}>
-          <LinearGradient
-            start={[1, 1]}
-            colors={['#E85486', '#E8546D', '#E75455']}
-            style={styles.scoreBox}
-          >
-            <View style={styles.alignment}>
-              <View style={styles.userTextContainer}>
-                <Text style={styles.username}>{firebaseFirstName} {firebaseLastName}</Text>
-                <Text style={styles.totalScore}>Total Score: </Text>
-              </View>
-              <View style={styles.userScoreContainer}>
-                <Text style={styles.scoreText}>{firebaseUserScore}</Text>
-              </View>
+        {!loading ?
+          <View>
+            <View style={styles.helloMsgContainer}>
+              <Text style={styles.helloText}>Hello, {''}</Text>
+              <Text style={styles.usernameText}>{firebaseFirstName}!</Text>
             </View>
-          </LinearGradient>
-        </View>
+
+            <View style={styles.scoreContainer}>
+              <LinearGradient start={[1, 1]} colors={['#E85486', '#E8546D', '#E75455']} style={styles.scoreBox}>
+                <View style={styles.alignment}>
+                  <View style={styles.userTextContainer}>
+                    <Text style={styles.username}>{firebaseFirstName} {firebaseLastName}</Text>
+                    <Text style={styles.totalScore}>Total Score: </Text>
+                  </View>
+                  <View style={styles.userScoreContainer}>
+                    <Text style={[firebaseUserScore.length < 3 ? styles.scoreText : styles.scoreText, styles.scoreTextSmall]}>{firebaseUserScore}</Text>
+                  </View>
+                </View>
+              </LinearGradient>
+            </View>
+          </View>
+          :
+          <View style={styles.loadingIndicator}>
+            <ActivityIndicator size="large" color="#E8546D" />
+          </View>}
 
 
 

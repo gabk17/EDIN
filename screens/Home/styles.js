@@ -48,6 +48,9 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 40,
   },
+  scoreTextSmall: {
+    fontSize: 35
+  },
   helloMsgContainer: {
     flexDirection: 'row',
     marginTop: 20,
@@ -147,6 +150,9 @@ const styles = StyleSheet.create({
   },
   notSelectedOption: {
     color: '#828999',
+  },
+  loadingIndicator: {
+    margin: height / 10.5
   }
 
 });
