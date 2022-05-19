@@ -2,16 +2,16 @@ import React, { useState, useRef } from "react"
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { TextInput, View, Text, TouchableOpacity, ToastAndroid } from 'react-native';
 import Svg, { Path } from "react-native-svg"
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { useDispatch, useSelector } from 'react-redux';
 
-import { collection, addDoc, doc, updateDoc } from 'firebase/firestore'
 import firebaseApp from '../../firebase'
 import { FirebaseRecaptchaVerifierModal, FirebaseRecaptchaBanner } from 'expo-firebase-recaptcha';
 import { getApp } from 'firebase/app';
-import { getAuth, PhoneAuthProvider } from 'firebase/auth';
-import { db } from '../../firebase'
+import { getAuth, PhoneAuthProvider, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { query, getDocs, collection, where, addDoc } from "firebase/firestore";
 
+import { db } from '../../firebase'
 import Header from '../../components/Header'
 import BorderLineHeader from '../../components/BorderLineHeader'
 import BorderLineFooter from '../../components/BorderLineFooter'
@@ -66,7 +66,7 @@ const Welcome = ({ navigation }) => {
       );
       setVerificationId(verificationId);
 
-      Platform.OS === 'android' && ToastAndroid.show('Verification code has been sent to your phone', ToastAndroid.SHORT)
+      Platform.OS === 'android' && ToastAndroid.show('OTP has been sent to your phone', ToastAndroid.SHORT)
 
       dispatch(saveUserInfo(phoneNumber));
 
@@ -75,6 +75,27 @@ const Welcome = ({ navigation }) => {
       { Platform.OS === 'android' && ToastAndroid.show(`Error: ${err.message}`, ToastAndroid.SHORT) }
     }
   }
+
+  const googleProvider = new GoogleAuthProvider();
+  const signInWithGoogle = async () => {
+    try {
+      const res = await signInWithPopup(auth, googleProvider);
+      const user = res.user;
+      const q = query(collection(db, "users"), where("id", "==", user.uid));
+      const docs = await getDocs(q);
+      console.log(user.displayName)
+      // if (docs.docs.length === 0) {
+      //   await addDoc(collection(db, "users"), {
+      //     id: user.uid,
+      //     email: user.email,
+      //     name: user.displayName,
+      //     authProvider: "google",
+      //   });
+      // }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <View style={styles.container}>

@@ -7,7 +7,7 @@ import Home from '../screens/Home';
 import Map from '../screens/Map';
 import Details from '../screens/Details';
 import Recent from '../screens/Recent';
-import Favorite from '../screens/Favorite';
+import Activity from '../screens/Activity';
 import Orders from '../screens/Orders';
 
 const Stack = createStackNavigator();
@@ -30,7 +30,7 @@ const HomeStackNavigator = () => {
       />
       <Stack.Screen name="Orders" component={Orders} />
       <Stack.Screen name="Recent" component={Recent} />
-      <Stack.Screen name="Favorite" component={Favorite} />
+      <Stack.Screen name="Activity" component={Activity} />
 
     </Stack.Navigator>
   );

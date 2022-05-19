@@ -5,16 +5,16 @@ import { collection, getDocs, query, where, orderBy, limit } from 'firebase/fire
 import { useSelector } from 'react-redux';
 import TimeAgo from 'react-native-timeago';
 import Modal from "react-native-modal";
-import { SwipeablePanel } from 'rn-swipeable-panel';
 
 import styles from './styles';
 import { db } from '../../firebase'
 
 const Orders = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [total, setTotal] = useState(0)
   const [order, setOrder] = useState([]);
-  const [orderDetails, setOrderDetails] = useState({ "details": [] })
   const [loading, setLoading] = useState(true)
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [orderDetails, setOrderDetails] = useState({ "details": [] })
   const info = useSelector(state => state.userInfo)
 
   let [, userID] = info
@@ -31,6 +31,9 @@ const Orders = () => {
 
       fetchOrders.forEach((doc) => {
         setOrder(fetchOrders.docs.map((doc) => ({ ...doc.data() })))
+
+        let total = doc.data().details.reduce((accumulator, current) => accumulator + current.price * current.quantity, 0)
+        setTotal(total)
       });
     } catch (e) {
       console.log(e)
@@ -42,24 +45,6 @@ const Orders = () => {
   const handleModal = (id) => {
     setIsModalVisible(!isModalVisible)
     setOrderDetails(order[id])
-  };
-
-  const [panelProps, setPanelProps] = useState({
-    fullWidth: true,
-    openLarge: true,
-    showCloseButton: true,
-    onClose: () => closePanel(),
-    onPressCloseButton: () => closePanel(),
-    // ...or any prop you want
-  });
-  const [isPanelActive, setIsPanelActive] = useState(false);
-
-  const openPanel = () => {
-    setIsPanelActive(true);
-  };
-
-  const closePanel = () => {
-    setIsPanelActive(false);
   };
 
   return (
@@ -92,7 +77,15 @@ const Orders = () => {
 
                 </View>
 
-                <SwipeablePanel {...panelProps} isActive={isPanelActive}>
+                <Modal isVisible={isModalVisible}
+                  animationType={"none"}
+                  animationInTiming={0}
+                  animationOutTiming={0}
+                  backdropTransitionInTiming={0}
+                  backdropTransitionOutTiming={0}
+                  backdropColor="rgba(0,0,0,0.1)"
+                  onBackdropPress={() => setIsModalVisible(!isModalVisible)}
+                >
                   <View style={styles.modalContainer}>
                     <View style={styles.modalContent}>
                       {orderDetails.details.map((detail, idx) => {
@@ -113,27 +106,25 @@ const Orders = () => {
                           </View>
                         )
                       })}
+                      <View style={styles.rowTotal}>
+                        <View style={styles.rectangle} />
+
+                        <View style={styles.totalContainer}>
+                          <Text style={styles.totalTitle}>Total</Text>
+                        </View>
+                        <View style={styles.totalPrice}>
+                          <Text style={styles.totalText}>${total}</Text>
+                        </View>
+                      </View>
+
                       <View style={styles.buttonContainer}>
                         <Button title="Hide"
                           onPress={() => setIsModalVisible(!isModalVisible)}
-                          color='#E8546D'
-
-                        />
+                          color='#E8546D' />
                       </View>
                     </View>
                   </View>
-                </SwipeablePanel>
-
-                {/* <Modal isVisible={isModalVisible}
-                  animationInTiming={0}
-                  animationOutTiming={0}
-                  backdropTransitionInTiming={0}
-                  backdropTransitionOutTiming={0}
-                  backdropColor="rgba(255,255,255,0)"
-                  onBackdropPress={() => setIsModalVisible(!isModalVisible)}
-                >
-                  
-                </Modal> */}
+                </Modal>
               </View>
             )
           }) :

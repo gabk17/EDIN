@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Text, TextInput, ToastAndroid } from 'react-nat
 import { useSelector } from 'react-redux';
 import { doc, updateDoc, query, getDocs, collection, where, onSnapshot } from 'firebase/firestore'
 import Svg, { Path } from "react-native-svg"
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 import { db } from '../../firebase'
 import styles from './styles';
@@ -40,13 +41,45 @@ const EditProfile = ({ navigation }) => {
     </Svg>
   )
 
+  const forwardSVG = (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={19}
+      height={19}
+      fill="none"
+    >
+      <Path
+        fill="#EA6E6E"
+        d="M5.542 19a.792.792 0 0 1-.562-1.354l6.467-6.468a2.375 2.375 0 0 0 0-3.356L4.98 1.354A.795.795 0 1 1 6.104.23l6.468 6.467a3.958 3.958 0 0 1 0 5.606L6.104 18.77a.791.791 0 0 1-.562.23z"
+      />
+    </Svg>
+  )
+
+  const passSVG = (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={18}
+      height={21}
+      fill="none"
+    >
+      <Path
+        fill="#EA6E6E"
+        d="M15.01 7.715V6.458C15.01 3.121 12.32.416 9 .416S2.99 3.121 2.99 6.458v1.257a4.75 4.75 0 0 0-2.575 4.223v4.315C.417 18.873 2.53 20.997 5.137 21h7.727c2.606-.003 4.719-2.126 4.721-4.747v-4.315a4.75 4.75 0 0 0-2.575-4.223zM9 3.005a3.443 3.443 0 0 1 3.434 3.453v.733H5.566v-.733A3.443 3.443 0 0 1 9 3.006zm6.01 13.248a2.152 2.152 0 0 1-2.146 2.158H5.136a2.152 2.152 0 0 1-2.147-2.158v-4.315c0-1.192.961-2.158 2.147-2.158h7.727c1.185 0 2.146.966 2.146 2.158v4.315z"
+      />
+      <Path
+        fill="#EA6E6E"
+        d="M8.57 12.37h.86c.71 0 1.287.579 1.287 1.294 0 .715-.576 1.295-1.288 1.295h-.858c-.711 0-1.288-.58-1.288-1.295s.577-1.295 1.288-1.295z"
+      />
+    </Svg>
+  )
+
   const [userDocID, setUserDocID] = useState('')
   const [firebaseFirstName, setFirebaseFirstName] = useState('')
   const [firebaseLastName, setFirebaseLastName] = useState('')
 
+  const auth = getAuth();
   const info = useSelector(state => state.userInfo)
-
-  let [, userID] = info
+  let [, userID, , , email] = info
 
   useEffect(async () => {
     const q = query(collection(db, "users"), where("id", "==", userID));
@@ -69,26 +102,43 @@ const EditProfile = ({ navigation }) => {
 
   }
 
+  const sendPasswordReset = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      ToastAndroid.show("Password reset link sent!", ToastAndroid.SHORT)
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <View style={styles.logo}>
-          {profileSVG}
+      <View style={styles.editProfileContainer}>
+        <View style={styles.inputContainer}>
+          <View style={styles.logo}>
+            {profileSVG}
+          </View>
+          <TextInput style={styles.input} placeholder="First Name" maxLength={32} value={firebaseFirstName} onChangeText={e => setFirebaseFirstName(e)} />
         </View>
-        <TextInput style={styles.input} placeholder="First Name" maxLength={32} value={firebaseFirstName} onChangeText={e => setFirebaseFirstName(e)} />
-      </View>
-      <View style={styles.inputContainer}>
-        <View style={styles.logo}>
-          {familySVG}
+        <View style={styles.inputContainer}>
+          <View style={styles.logo}>
+            {familySVG}
+          </View>
+          <TextInput style={styles.input} placeholder="First Name" maxLength={32} value={firebaseLastName} onChangeText={e => setFirebaseLastName(e)} />
         </View>
-        <TextInput style={styles.input} placeholder="First Name" maxLength={32} value={firebaseLastName} onChangeText={e => setFirebaseLastName(e)} />
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.editButtonContainer} onPress={handleEdit}>
+            <Text style={styles.buttonText}>Edit Profile</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.editButtonContainer} onPress={handleEdit}>
-          <Text style={styles.buttonText}>Edit Profile</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={styles.settingsContainer} onPress={() => sendPasswordReset(email)}>
+        <View style={styles.passLogo}>{passSVG}</View>
+        <Text style={styles.settingsText}>Reset Password</Text>
+        <View style={styles.forwardIcon}>{forwardSVG}</View>
+      </TouchableOpacity>
     </View>
   );
 }

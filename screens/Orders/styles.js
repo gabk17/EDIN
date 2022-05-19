@@ -18,6 +18,18 @@ const styles = StyleSheet.create({
     width: width,
     height: 70,
     marginBottom: 5,
+    borderColor: "rgba(255,255,255,0)",
+    borderTopColor: "rgba(0, 0, 0, 0.2)",
+    borderBottomColor: "rgba(0, 0, 0, 0.2)",
+    borderWidth: 1,
+  },
+  rowTotal: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    height: 70,
+    marginBottom: 5,
+    borderColor: "rgba(255,255,255,0)",
     borderTopColor: "rgba(0, 0, 0, 0.2)",
     borderBottomColor: "rgba(0, 0, 0, 0.2)",
     borderWidth: 1,
@@ -64,7 +76,7 @@ const styles = StyleSheet.create({
   },
   rectangle: {
     height: '100%',
-    width: 5,
+    width: 4,
     backgroundColor: '#E85486'
   },
   quantityText: {
@@ -81,7 +93,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   totalContainer: {
-    marginLeft: width / 15,
+    marginLeft: width / 8,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -100,7 +112,7 @@ const styles = StyleSheet.create({
   },
   totalPrice: {
     position: 'absolute',
-    right: 50
+    right: 80
   },
   totalText: {
     color: '#393B40',

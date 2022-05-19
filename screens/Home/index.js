@@ -120,14 +120,13 @@ const Home = ({ navigation }) => {
                 </View>
               </LinearGradient>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Favorite')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Activity')}>
               <View style={styles.optionBoxN2}>
                 <View style={styles.forwardButton}>
                   <ForwardButton color={"#E85486"} />
                 </View>
                 <View style={styles.optionTextContainer}>
-                  <Text style={styles.optionTextN2}>Favorite</Text>
-                  <Text style={styles.optionTextN2}>Menu</Text>
+                  <Text style={styles.optionTextN2}>My Activity</Text>
                 </View>
               </View>
             </TouchableOpacity>
