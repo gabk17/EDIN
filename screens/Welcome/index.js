@@ -76,27 +76,6 @@ const Welcome = ({ navigation }) => {
     }
   }
 
-  const googleProvider = new GoogleAuthProvider();
-  const signInWithGoogle = async () => {
-    try {
-      const res = await signInWithPopup(auth, googleProvider);
-      const user = res.user;
-      const q = query(collection(db, "users"), where("id", "==", user.uid));
-      const docs = await getDocs(q);
-      console.log(user.displayName)
-      // if (docs.docs.length === 0) {
-      //   await addDoc(collection(db, "users"), {
-      //     id: user.uid,
-      //     email: user.email,
-      //     name: user.displayName,
-      //     authProvider: "google",
-      //   });
-      // }
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   return (
     <View style={styles.container}>
       <FirebaseRecaptchaVerifierModal
@@ -137,14 +116,14 @@ const Welcome = ({ navigation }) => {
       </View>
       <View style={styles.loginFooter}>
         <BorderLineFooter />
-        <View style={styles.orButtonsContainer}>
+        {/* <View style={styles.orButtonsContainer}>
           <TouchableOpacity style={styles.googleIcon}>
             <GoogleIcon />
           </TouchableOpacity>
           <TouchableOpacity>
             <MoreIcon />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
       <View>
         <View style={styles.recaptcha} />

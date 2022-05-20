@@ -17,7 +17,15 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   loadingIndicator: {
-    marginTop: 70
+    flex: 1,
+    marginBottom: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  noRecentFound: {
+    width: 400,
+    height: 420,
+    marginTop: 100
   }
 });
 

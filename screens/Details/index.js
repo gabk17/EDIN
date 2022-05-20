@@ -10,7 +10,7 @@ const Details = ({ navigation, route }) => {
 
   const { width, height } = Dimensions.get('window')
   const { item } = route.params;
-
+  console.log(item)
   const starSVG = (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
@@ -68,21 +68,43 @@ const Details = ({ navigation, route }) => {
               <LinearGradient
                 start={[1, 1]}
                 colors={['#E85486', '#E8546D', '#E75455']}
-                style={styles.separator}
-              ></LinearGradient>
+                style={styles.separator} />
               <View style={styles.ratingContainer}>
-                <Text style={styles.rating}>Rating: {starSVG} {item.rating} </Text>
+                <Text style={styles.rating}>Rating: {item.rating} {starSVG}</Text>
               </View>
 
+
+            </View>
+            <View style={{ marginTop: height / 6 }}>
+              {item.menu.map(item => {
+                console.log(item.title)
+                return (
+                  <View style={styles.menuBox} key={item.id}>
+                    <View style={styles.imageBox}>
+                      <Image
+                        style={styles.imageMenu}
+                        source={item.image}
+                      />
+                    </View>
+
+                    <View style={styles.infoBox}>
+                      <View style={styles.titleBox}>
+                        <Text style={styles.titleTxt}>{item.title}</Text>
+                      </View>
+                      <View style={styles.priceBox}>
+                        <Text style={styles.priceTxt}>$ {item.price}</Text>
+                      </View>
+                    </View>
+                  </View>
+                )
+              })}
               <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.callButton} onPress={() => { Linking.openURL(`tel:${item.phoneNumber}`) }}>
                   <Text style={styles.buttonText}>Call</Text>
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={{ height: height - 25 }}>
 
-            </View>
           </View>
         </Animated.ScrollView>
         <StatusBar style="auto" />

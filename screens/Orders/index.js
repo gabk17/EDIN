@@ -24,7 +24,7 @@ const Orders = () => {
       const userRef = collection(db, "recent");
       const whereRef = where("userID", "==", userID)
       const orderRef = orderBy("time", "desc")
-      const q = query(userRef, whereRef, orderRef, limit(10));
+      const q = query(userRef, whereRef, orderRef, limit(9));
 
       const fetchOrders = await getDocs(q);
       setLoading(false)

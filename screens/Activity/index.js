@@ -82,7 +82,7 @@ const Activity = () => {
 
       const locationArray = []
       fetchDoc.forEach((doc) => {
-        locationArray.push(doc.data().location)
+        locationArray.push(doc.data().location.length > 10 ? doc.data().location.split(' ')[0] : doc.data().location)
       });
 
       function onlyUnique(value, index, self) {
@@ -163,7 +163,7 @@ const Activity = () => {
             }}
             accessor="count"
             backgroundColor="transparent"
-            paddingLeft="5"
+            paddingLeft="25"
             absolute //for the absolute number remove if you want percentage
           />
         </> :

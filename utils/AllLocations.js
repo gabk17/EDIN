@@ -6,7 +6,45 @@ export const AllLocations = [
     image: require('../assets/IrisImage.png'),
     latitude: 33.9066,
     longitude: 35.5105,
-    phoneNumber: '+961 01/234567'
+    phoneNumber: '+961 01/234567',
+    menu: [
+      {
+        id: 0,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Chicken Sandwich',
+        price: 18,
+      },
+      {
+        id: 1,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Mighty Chicken',
+        price: 22,
+      },
+      {
+        id: 2,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 3,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 4,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 5,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+    ]
   }, {
     id: 1,
     title: "Junkies",
@@ -14,7 +52,45 @@ export const AllLocations = [
     image: require('../assets/JunkiesImage.png'),
     latitude: 33.8513,
     longitude: 35.5157,
-    phoneNumber: '+961 01/234567'
+    phoneNumber: '+961 01/234567',
+    menu: [
+      {
+        id: 0,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Chicken Sandwich',
+        price: 18,
+      },
+      {
+        id: 1,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Mighty Chicken',
+        price: 22,
+      },
+      {
+        id: 2,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 3,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 4,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 5,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+    ]
   },
   {
     id: 2,
@@ -24,7 +100,45 @@ export const AllLocations = [
     latitude: 33.8885,
     longitude: 35.5196,
     phoneNumber: '+961 01/234567',
-    color: '#ffc72c'
+    color: '#ffc72c',
+    menu: [
+      {
+        id: 0,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Chicken Sandwich',
+        price: 18,
+      },
+      {
+        id: 1,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Mighty Chicken',
+        price: 22,
+      },
+      {
+        id: 2,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 3,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 4,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 5,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+    ]
   }, {
     id: 3,
     title: "Dip n Dip",
@@ -33,7 +147,45 @@ export const AllLocations = [
     latitude: 33.8992,
     longitude: 35.4807,
     phoneNumber: '+961 01/234567',
-    color: '#000'
+    color: '#000',
+    menu: [
+      {
+        id: 0,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Chicken Sandwich',
+        price: 18,
+      },
+      {
+        id: 1,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Mighty Chicken',
+        price: 22,
+      },
+      {
+        id: 2,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 3,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 4,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 5,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+    ]
   },
   {
     id: 4,
@@ -42,7 +194,45 @@ export const AllLocations = [
     image: require('../assets/Mytellaria.png'),
     latitude: 33.8963,
     longitude: 35.4823,
-    phoneNumber: '+961 01/234567'
+    phoneNumber: '+961 01/234567',
+    menu: [
+      {
+        id: 0,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Chicken Sandwich',
+        price: 18,
+      },
+      {
+        id: 1,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Mighty Chicken',
+        price: 22,
+      },
+      {
+        id: 2,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 3,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 4,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 5,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+    ]
   },
   {
     id: 5,
@@ -51,7 +241,45 @@ export const AllLocations = [
     image: require('../assets/SpineImage.png'),
     latitude: 33.9221,
     longitude: 35.5855,
-    phoneNumber: '+961 01/234567'
+    phoneNumber: '+961 01/234567',
+    menu: [
+      {
+        id: 0,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Chicken Sandwich',
+        price: 18,
+      },
+      {
+        id: 1,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Mighty Chicken',
+        price: 22,
+      },
+      {
+        id: 2,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 3,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 4,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 5,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+    ]
   },
   {
     id: 6,
@@ -61,7 +289,45 @@ export const AllLocations = [
     latitude: 33.8869,
     longitude: 35.5167,
     phoneNumber: '+961 01/234567',
-    color: '#fff'
+    color: '#fff',
+    menu: [
+      {
+        id: 0,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Chicken Sandwich',
+        price: 18,
+      },
+      {
+        id: 1,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Mighty Chicken',
+        price: 22,
+      },
+      {
+        id: 2,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 3,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 4,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 5,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+    ]
   },
   {
     id: 7,
@@ -70,7 +336,45 @@ export const AllLocations = [
     image: require('../assets/alMandalounImage.png'),
     latitude: 33.8923,
     longitude: 35.5138,
-    phoneNumber: '+961 01/234567'
+    phoneNumber: '+961 01/234567',
+    menu: [
+      {
+        id: 0,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Chicken Sandwich',
+        price: 18,
+      },
+      {
+        id: 1,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Mighty Chicken',
+        price: 22,
+      },
+      {
+        id: 2,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 3,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 4,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 5,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+    ]
   },
   {
     id: 8,
@@ -80,7 +384,45 @@ export const AllLocations = [
     latitude: 33.8918,
     longitude: 35.5148,
     phoneNumber: '+961 01/234567',
-    color: '#00827e'
+    color: '#00827e',
+    menu: [
+      {
+        id: 0,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Chicken Sandwich',
+        price: 18,
+      },
+      {
+        id: 1,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Mighty Chicken',
+        price: 22,
+      },
+      {
+        id: 2,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 3,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 4,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 5,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+    ]
   },
   {
     id: 9,
@@ -90,6 +432,44 @@ export const AllLocations = [
     latitude: 33.8938,
     longitude: 35.5018,
     phoneNumber: '+961 01/234567',
-    color: '#1c1b17'
+    color: '#1c1b17',
+    menu: [
+      {
+        id: 0,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Chicken Sandwich',
+        price: 18,
+      },
+      {
+        id: 1,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Mighty Chicken',
+        price: 22,
+      },
+      {
+        id: 2,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 3,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 4,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+      {
+        id: 5,
+        image: require('../assets/RoadsterImage.png'),
+        title: 'Steak Platter',
+        price: 35,
+      },
+    ]
   },
 ]

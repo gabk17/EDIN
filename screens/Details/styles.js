@@ -10,6 +10,52 @@ const styles = StyleSheet.create({
     width: 420,
     height: 500,
   },
+  menuBox: {
+    flexDirection: 'row',
+    marginTop: 15,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imageBox: {
+    width: width - width / 2,
+    height: height - height / 1.14,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+    marginRight: 2,
+    backgroundColor: '#E755',
+    justifyContent: 'center',
+    borderWidth: 0.2,
+    borderColor: '#000',
+    overflow: 'hidden'
+  },
+  infoBox: {
+    width: width - width / 1.7,
+    height: height - height / 1.14,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    borderWidth: 0.2,
+    borderColor: '#000'
+  },
+  titleBox: {
+    alignItems: 'center'
+  },
+  titleTxt: {
+    fontSize: 15
+  },
+  imageMenu: {
+    width: '100%',
+    height: '140%',
+    resizeMode: 'cover',
+  },
+  priceBox: {
+    alignItems: 'center'
+  },
+  priceTxt: {
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
   background: {
     backgroundColor: "#000",
     opacity: 0.3
@@ -38,14 +84,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   ratingContainer: {
-    marginTop: 10,
-    marginBottom: 10,
+    margin: 25,
   },
   backButton: {
     marginTop: 14
   },
   buttonContainer: {
     marginTop: 30,
+    marginBottom: 100,
     alignItems: 'center',
   },
   callButton: {

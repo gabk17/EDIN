@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   buttonContainer: {
-    flex: 1
+    flex: 1,
+    marginBottom: 15
   },
   continueButton: {
     alignItems: 'center',
